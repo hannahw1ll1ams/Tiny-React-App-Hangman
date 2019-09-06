@@ -1,0 +1,9 @@
+.alphabet {
+  height: 100vh;
+  list-style: none;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+}
