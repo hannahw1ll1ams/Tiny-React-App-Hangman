@@ -15,4 +15,10 @@
 .wordInPlayLetters{
   display: flex;
   justify-content: space-between;
+  padding:0;
+}
+
+.WordInPlay{
+    width:40%;
+
 }
