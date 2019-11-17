@@ -11,3 +11,8 @@
 .correct {
   color:green;
 }
+
+.wordInPlayLetters{
+  display: flex;
+  justify-content: space-between;
+}

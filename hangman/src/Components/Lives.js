@@ -3,13 +3,17 @@ import '../css/lives.css'
 
 
 const Lives = ({ wordToGuess, lettersSoFar, livesLeft }) => {
-
   return (
-    <div>
+    <div className='Lives'>
+      <p>{livesLeft === 0 && "YOU LOST"}</p>
+
+
       <ul className="incorrect" > Incorrect Letters:
         {lettersSoFar.filter(letter => (wordToGuess.includes(letter) === false)
-        && livesLeft--
       )}
+      </ul>
+      <ul className="correct" >Correct Letters:
+        {lettersSoFar.filter(letter => wordToGuess.includes(letter))}
       </ul>
       <p>Lives Left: {livesLeft}</p>
     </div>

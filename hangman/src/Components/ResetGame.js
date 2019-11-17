@@ -5,7 +5,7 @@ const ResetGame = ({ toStartAgain }) => {
     toStartAgain()
   }
   return (
-    <button onClick={handleClick}> Start Again </button>
+    <button onClick={handleClick} className='ResetButton'> Start Again </button>
   );
 };
 

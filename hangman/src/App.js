@@ -10,24 +10,26 @@ import ResetGame from './Components/ResetGame';
 
 class App extends Component {
   state = {
-    selectableWords: ["cheese", "donut", "pizzaexpress", "croquette"],
+    selectableWords: ["cheese", "donut", "pizzaexpress", "croquettes"],
     lettersSoFar: [],
     livesLeft: 10,
     currentWordIndex: 0
   }
 
   fetchLetterClicked = (letter) => {
-    const { lettersSoFar } = this.state
-    this.setState({ lettersSoFar: [...lettersSoFar, letter] })
+    const { lettersSoFar, selectableWords, currentWordIndex } = this.state;
+    let livesDifference = 0;
+    (selectableWords[currentWordIndex].includes(letter) === false) ? livesDifference = -1 : livesDifference = 0
+    this.setState(currentState => {
+      return { livesLeft: currentState.livesLeft + livesDifference, lettersSoFar: [...lettersSoFar, letter] }
+    })
   }
 
   toStartAgain = () => {
     console.log('RESETTING')
     const { selectableWords } = this.state;
     let currentWordIndex = Math.floor(Math.random() * (selectableWords.length))
-    this.setState({ lettersSoFar: [], livesLeft: 10, currentWordIndex }, () => {
-      console.log(this.state)
-    })
+    this.setState({ lettersSoFar: [], livesLeft: 10, currentWordIndex })
   }
 
   render() {
@@ -36,12 +38,9 @@ class App extends Component {
       <div className="App" >
         <Header />
         <GameDescription />
-        <h2>Lives COMPONENT</h2>
-        <Lives wordToGuess={selectableWords[currentWordIndex]} lettersSoFar={lettersSoFar} livesLeft={livesLeft} />
-        <h2>WordInPlay COMPONENT</h2>
+        <Lives wordToGuess={selectableWords[currentWordIndex]} lettersSoFar={lettersSoFar} livesLeft={livesLeft} updateLivesLeft={this.updateLivesLeft} />
         <WordInPlay wordToGuess={selectableWords[currentWordIndex]} lettersSoFar={lettersSoFar} />
-        <h2>AlphabetList COMPONENT</h2>
-        <AlphabetList fetchLetterClicked={this.fetchLetterClicked} lettersSoFar={lettersSoFar} />
+        <AlphabetList fetchLetterClicked={this.fetchLetterClicked} lettersSoFar={lettersSoFar} livesLeft={livesLeft} />
         <ResetGame toStartAgain={this.toStartAgain} />
       </div>
     );

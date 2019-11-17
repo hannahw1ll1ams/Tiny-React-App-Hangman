@@ -10,12 +10,12 @@ class AlphabetList extends Component {
   }
   render() {
     const { alphabet } = this.state;
-    const { lettersSoFar } = this.props;
+    const { lettersSoFar, livesLeft } = this.props;
     return (
       <div className='alphabetContainer'>
         <ul className="alphabet">
           {alphabet.map(letter => {
-            return <button disabled={lettersSoFar.includes(letter)} name={letter} key={letter} onClick={this.handleClick}>{letter}</button>
+            return <button disabled={lettersSoFar.includes(letter) || livesLeft === 0} name={letter} key={letter} onClick={this.handleClick}>{letter}</button>
           })}
         </ul>
       </div>
