@@ -1,12 +1,17 @@
 import React from 'react';
+import '../css/lives.css'
 
-const Lives = () => {
 
-  //if word to guess doesn't contain the letter guessed, then minus the amount of letters guessed wrongly.
+const Lives = ({ wordToGuess, lettersSoFar, livesLeft }) => {
 
   return (
     <div>
-      <p>Lives Left: 10</p>
+      <ul className="incorrect" > Incorrect Letters:
+        {lettersSoFar.filter(letter => (wordToGuess.includes(letter) === false)
+        && livesLeft--
+      )}
+      </ul>
+      <p>Lives Left: {livesLeft}</p>
     </div>
   );
 };
